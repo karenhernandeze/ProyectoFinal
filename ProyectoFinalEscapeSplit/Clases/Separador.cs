@@ -12,11 +12,6 @@ namespace ProyectoFinalEscapeSplit.Clases
     public class Separador
     {
 
-
-
-        //public Items.Jugador jugador = new Items.Jugador("jugador", true);
-
-        //public Items.Secuestrador secuestrador = new Items.Secuestrador("Kevin");
         public static int SortArrays()
         {
             string[] instrucciones = Arrays.GetArrayins();
@@ -34,6 +29,7 @@ namespace ProyectoFinalEscapeSplit.Clases
                 
              Secuestrador secuestrador = new Secuestrador("kevin");
              Jugador jugador1 = new Jugador("jugador", true);
+
             while (i < instrucciones.Length)
             {
 
@@ -50,13 +46,14 @@ namespace ProyectoFinalEscapeSplit.Clases
                 Console.Write("{0}\t\t\t", optext[int.Parse(opcionesA[i])]);
                 int tempA = int.Parse(opcionesA[i]);
 
-                //Console.Write("Flecha derecha: \t");
+
                 Console.WriteLine(optext[int.Parse(opcionesB[i])]+"\n");
                 int tempB = int.Parse(opcionesB[i]);
-                //tablero.Perder();
+
 
                 int tempA2;
                 int tempB2;
+
                 ConsoleKeyInfo KeyInfo;
                 int timeconsole;
 
@@ -71,18 +68,26 @@ namespace ProyectoFinalEscapeSplit.Clases
                             Console.WriteLine(Descripcion.LeerTexto());
                         }
 
-                        //Console.WriteLine(instruccionestxt[int.Parse(indexins[tempA])];
                         tempA2 = int.Parse(indexins[tempA]);
+                        if (tempA2 == 25  ) //25 GANAS
+                        {
+                            Console.WriteLine("Juego terminado");
+                            Console.Write(optext[35]);
+
+                            System.Environment.Exit(1); 
+                        }
+                        if (tempA2 == 23) //PIERDES
+                        {
+                            Console.WriteLine("Juego terminado");
+
+                            Console.Write(optext[33]);
+                            System.Environment.Exit(1);
+                        }
                         if (tempA2 == 2 || tempA2 == 6 )
                         {
 
                              timeconsole=secuestrador.SAtaca(tiempo);
-                            Console.WriteLine("\nPerdiste tiempo, tiempo={0}\n",timeconsole);
-                            //if (timeconsole < 0)
-                            //{
-                            //    jugador1.Vida = false;
-                            //}
-
+                            Console.WriteLine("\nPerdiste tiempo, tiempo={0}\n", timeconsole);
                             Separador.Gameover(jugador1.Vida);
                         }
                         if (tempA2 == 7 || tempA2 == 8)
@@ -134,18 +139,11 @@ namespace ProyectoFinalEscapeSplit.Clases
                             Separador.Gameover(jugador1.Vida);
                         }
 
-                        //if (tempA == 6)
-                        //{
-                        //    int timeconsole = secuestrador.SAtaca(tiempo);
-                        //    Console.WriteLine("perdiste tiempo, tiempo={0}", timeconsole);
-                        //    Separador.Gameover(jugador1.Vida);
-                        //}
-                        //Console.WriteLine("TEMP A2: " + tempA2);
                         i = tempA2;
                         goto ValorI;
 
                     case ConsoleKey.RightArrow:
-                        //Console.WriteLine(instruccionestxt[int.Parse(indexins[tempB])]);
+
                         tempB2 = int.Parse(indexins[tempB]);
                         if (tempB2 == 2 || tempB2 == 6)
                         {
@@ -207,14 +205,21 @@ namespace ProyectoFinalEscapeSplit.Clases
 
                             Separador.Gameover(jugador1.Vida);
                         }
-                        //if (tempB2 == 6)
-                        //{
-                        //    int timeconsole = secuestrador.SAtaca(tiempo);
-                        //    Console.WriteLine("perdiste tiempo, tiempo={0}", timeconsole);
-                        //    Separador.Gameover(jugador1.Vida);
-                        //}
-                        //Console.WriteLine("TEMP B2: " + tempB2);
-                        //int tempB2 = i; 
+                        if (tempB2 == 25 ) //GANAS
+                        {
+                            Console.WriteLine("Juego terminado");
+                            Console.Write(optext[35]);
+
+                            System.Environment.Exit(1);
+                        }
+                        if (tempB2 == 23)
+                        {
+
+                            Console.WriteLine("Juego terminado");
+
+                            Console.Write(optext[33]);
+                            System.Environment.Exit(1);
+                        }
                         i = tempB2;
                         goto ValorI;
 
